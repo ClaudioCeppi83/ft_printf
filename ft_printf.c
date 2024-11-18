@@ -3,9 +3,9 @@ int	ft_printf(const char *format, ...)
 	int	i;
 
 	i = 0;
-	while (i = '%')
+	while (format[i] != '\0')
 	{
-		if (i + 1 = )
+		if (format[i + 1] == )
 		{
 			
 		}
