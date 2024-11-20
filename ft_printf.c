@@ -6,7 +6,7 @@
 /*   By: cceppi-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 20:39:39 by cceppi-c          #+#    #+#             */
-/*   Updated: 2024/11/19 22:01:07 by cceppi-c         ###   ########.fr       */
+/*   Updated: 2024/11/20 22:01:38 by cceppi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,25 @@ int	ft_printf(const char *format, ...)
 	va_start(data.ap, format);
 	if (init_data(&data, format))
 		return -1;
+	
+	//starting the function
+	while (*data.s)
+	{
+		if (*data.s == '%' && *(++data.s))
+		{
+			if (parse_format(&data))
+				return PARSE_ERROR;
+			render_format(&data);
+		}
+		else
+		{
+			// data.buffer[data.buffer_index++] = *data.s;
+			write_buffer(&data, *data.s);
+		}
+		++data.s;
+	}
+	flush_buffer(&data);
+	va_end(data.ap);
+	free(data.buffer);
+	return (data.char_count);
 }
