@@ -6,7 +6,7 @@
 /*   By: cceppi-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 20:42:58 by cceppi-c          #+#    #+#             */
-/*   Updated: 2024/11/20 22:00:48 by cceppi-c         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:54:36 by cceppi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 /* (1<<12) es equivalente a 4096, resulta mas 
 practico al cambiar el tamano de la memoria */
 #define BUF_SIZE (1<<12)
+
+typedef unsigned char	byte;
 
 //********** STRINGS **********
 
@@ -93,8 +95,10 @@ typedef enum
 //******** PROTOTYPES *********
 
 //Utils
-void	*ft_memset(void *b, int c, size_t len);
+void	*ft_memset(void *b, byte c, size_t len);
 bool	in(const char *s, char c);
+int	ft_atoi(t_data *data);
+void get_value(t_data *data, int *value);
 
 //Parser
 int	parse_format(t_data *data);

@@ -6,21 +6,21 @@
 /*   By: cceppi-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:02:59 by cceppi-c          #+#    #+#             */
-/*   Updated: 2024/11/20 22:03:02 by cceppi-c         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:55:50 by cceppi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdbool.h>
 
-void	*ft_memset(void *b, int c, size_t len)
+void	*ft_memset(void *b, byte c, size_t len)
 {
 	unsigned char	*temp;
 
 	temp = (unsigned char *)b;
 	while (len > 0)
 	{
-		*temp = (unsigned char)c;
+		*temp = c;
 		temp++;
 		len--;
 	}
@@ -40,7 +40,7 @@ bool	in(const char *s, char c)
 	return false;
 }
 
-static int	ft_atoi(t_data *data)
+int	ft_atoi(t_data *data)
 {
 	int	value;
 
@@ -50,7 +50,7 @@ static int	ft_atoi(t_data *data)
 	return (value);
 }
 
-static void get_value(t_data *data, int *value)
+void get_value(t_data *data, int *value)
 {
 	if (*data->s == '*')
 	{

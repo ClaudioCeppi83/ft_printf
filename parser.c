@@ -6,12 +6,12 @@
 /*   By: cceppi-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:02:39 by cceppi-c          #+#    #+#             */
-/*   Updated: 2024/11/20 22:02:43 by cceppi-c         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:45:59 by cceppi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "utils.c"
+//#include "utils.c"
 
 static void	parse_flags(t_data *data)
 {
