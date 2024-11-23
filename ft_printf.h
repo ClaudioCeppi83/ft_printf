@@ -6,7 +6,7 @@
 /*   By: cceppi-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 20:42:58 by cceppi-c          #+#    #+#             */
-/*   Updated: 2024/11/21 19:54:36 by cceppi-c         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:22:38 by cceppi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef unsigned char	byte;
 
 #define FLAGS "[0-' '#+]"
 #define WITDH "0123456789"
-#define SPECIFIERS "csdixXpu"
+#define SPECIFIERS "csdixXpu%"
 
 //*********** BASES ***********
 
@@ -63,6 +63,7 @@ typedef struct s_format
 	//utils
 	bool	upper_case;
 	e_base	base;
+	int	padding_spaces;
 
 } t_format;
 
@@ -99,9 +100,21 @@ void	*ft_memset(void *b, byte c, size_t len);
 bool	in(const char *s, char c);
 int	ft_atoi(t_data *data);
 void get_value(t_data *data, int *value);
+size_t	ft_strlen(const char *str);
 
 //Parser
 int	parse_format(t_data *data);
+
+//Buffer
+void	write_buffer(t_data *data, char c);
+void	flush_buffer(t_data *data);
+void	putchar_buffer_n(char c, int precision, t_data *data);
+void	putstr_buffer_n(char *s, int precision, t_data *data);
+
+//Render
+void	render_format(t_data *data);
+void	print_char(t_data *data, int c);
+void	print_str(t_data *data, char *s);
 
 
 #endif

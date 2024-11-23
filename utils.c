@@ -6,7 +6,7 @@
 /*   By: cceppi-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 22:02:59 by cceppi-c          #+#    #+#             */
-/*   Updated: 2024/11/21 19:55:50 by cceppi-c         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:08:01 by cceppi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,14 @@ void get_value(t_data *data, int *value)
 		return;
 	}
 	*value = ft_atoi(data);
+}
+
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
