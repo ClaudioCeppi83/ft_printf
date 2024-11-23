@@ -6,7 +6,7 @@
 /*   By: cceppi-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 20:42:58 by cceppi-c          #+#    #+#             */
-/*   Updated: 2024/11/23 18:22:38 by cceppi-c         ###   ########.fr       */
+/*   Updated: 2024/11/23 20:12:24 by cceppi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,12 @@ typedef struct s_format
 	int	precision_value;
 
 	//utils
+	char	buffer_temp[64];
 	bool	upper_case;
 	e_base	base;
 	int	padding_spaces;
+	bool	signed_value;
+	bool	is_negative;
 
 } t_format;
 
@@ -83,6 +86,12 @@ typedef struct s_data
 	t_format	format;
 
 } t_data;
+
+typedef union
+{
+	unsigned long	uint64;
+	long	int64;
+} union_int;
 
 //******** ERROR ALIAS ********
 

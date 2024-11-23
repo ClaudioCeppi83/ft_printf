@@ -6,7 +6,7 @@
 /*   By: cceppi-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 20:39:39 by cceppi-c          #+#    #+#             */
-/*   Updated: 2024/11/23 19:08:32 by cceppi-c         ###   ########.fr       */
+/*   Updated: 2024/11/23 20:04:33 by cceppi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,30 @@
 void	render_format(t_data *data)
 {
 	char	specifier;
+	union_int	int_values;
 
 	specifier = data->format.specifier;
+	int_values.int64 = 0;
 	if ('%' == specifier)
 		print_char(data, '%');
 	else if ('c' == specifier)
 		print_char(data, va_arg(data->ap, int));
 	else if ('s' == specifier)
 		print_str(data, va_arg(data->ap, char *));
+	if (in("dixXpu", specifier))
+	{
+		if (in("di", specifier))
+		{
+			int_values.int64 = (long)va_arg(data->ap, int);
+			data->format.signed_value = true;
+				if (int_values.int64 < 0)
+					data->format.is_negative = true;
+		}
+		else if (in("p", specifier))
+			int_values.uint64 = (unsigned long)va_arg(data->ap, void *);
+		else if (in("xXu", specifier))
+			int_values.uint64 = (unsigned long)va_arg(data->ap, unsigned int);
+	}
 }
 
 static int	init_data(t_data *data, const char *format)
