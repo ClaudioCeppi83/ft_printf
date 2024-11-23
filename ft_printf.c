@@ -6,13 +6,26 @@
 /*   By: cceppi-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 20:39:39 by cceppi-c          #+#    #+#             */
-/*   Updated: 2024/11/20 22:01:38 by cceppi-c         ###   ########.fr       */
+/*   Updated: 2024/11/23 19:08:32 by cceppi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "ft_printf.h"
 #include <stdarg.h>
+
+void	render_format(t_data *data)
+{
+	char	specifier;
+
+	specifier = data->format.specifier;
+	if ('%' == specifier)
+		print_char(data, '%');
+	else if ('c' == specifier)
+		print_char(data, va_arg(data->ap, int));
+	else if ('s' == specifier)
+		print_str(data, va_arg(data->ap, char *));
+}
 
 static int	init_data(t_data *data, const char *format)
 {
@@ -33,7 +46,7 @@ int	ft_printf(const char *format, ...)
 	//starting the variadic functions and data
 	va_start(data.ap, format);
 	if (init_data(&data, format))
-		return -1;
+		return MALLOC_ERROR;
 	
 	//starting the function
 	while (*data.s)

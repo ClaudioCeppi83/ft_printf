@@ -6,7 +6,7 @@
 /*   By: cceppi-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:07:10 by cceppi-c          #+#    #+#             */
-/*   Updated: 2024/11/23 18:37:05 by cceppi-c         ###   ########.fr       */
+/*   Updated: 2024/11/23 19:08:26 by cceppi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,6 @@ static void	set_str_spaces(t_data *data, char *s)
 			data->format.padding_spaces = data->format.with_value - len;
 		}
 	}
-}
-
-void	render_format(t_data *data)
-{
-	char	specifier;
-
-	specifier = data->format.specifier;
-	if ('%' == specifier)
-		print_char(data, '%');
-	else if ('c' == specifier)
-		print_char(data, va_arg(data->ap, int));
-	else if ('s' == specifier)
-		print_str(data, va_arg(data->ap, char *));
 }
 
 void	print_char(t_data *data, int c)
