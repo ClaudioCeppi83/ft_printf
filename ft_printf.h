@@ -6,7 +6,7 @@
 /*   By: cceppi-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 20:42:58 by cceppi-c          #+#    #+#             */
-/*   Updated: 2024/11/23 20:12:24 by cceppi-c         ###   ########.fr       */
+/*   Updated: 2024/11/24 20:17:43 by cceppi-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef unsigned char	byte;
 #define FLAGS "[0-' '#+]"
 #define WITDH "0123456789"
 #define SPECIFIERS "csdixXpu%"
+#define LOW_SYMBOLS "0123456789abcdef"
+#define UP_SYMBOLS "0123456789ABCDEF"
 
 //*********** BASES ***********
 
@@ -62,11 +64,14 @@ typedef struct s_format
 
 	//utils
 	char	buffer_temp[64];
+	int	nbr_len;
 	bool	upper_case;
 	e_base	base;
 	int	padding_spaces;
+	int	padding_zeros;
 	bool	signed_value;
 	bool	is_negative;
+	bool	is_converted;
 
 } t_format;
 
@@ -108,6 +113,7 @@ typedef enum
 void	*ft_memset(void *b, byte c, size_t len);
 bool	in(const char *s, char c);
 int	ft_atoi(t_data *data);
+void	ft_itoa (t_data *data, union_int int_value);
 void get_value(t_data *data, int *value);
 size_t	ft_strlen(const char *str);
 
@@ -124,6 +130,10 @@ void	putstr_buffer_n(char *s, int precision, t_data *data);
 void	render_format(t_data *data);
 void	print_char(t_data *data, int c);
 void	print_str(t_data *data, char *s);
+void	padding_spaces(t_data *data);
+void	padding_zeros(t_data *data);
+void	put_sign(t_data *data);
+void	print_int(t_data *data, union_int int_value);
 
 
 #endif
